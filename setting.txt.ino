@@ -272,9 +272,11 @@ void Http_Post_request(String barcode_id) {
 
   // int payload = http.getString();
   int payload = httpResponseCode;
-
-  
+ Serial.print("res status : ");   Serial.println(payload);
+   http.end();
 //   while(payload <200 && cout_time <= 10){
+
+
 // if ((millis() - current_time) >= 1000) {  // function millis()
 //     // payload = http.getString();
 //     payload = httpResponseCode;
@@ -285,29 +287,27 @@ void Http_Post_request(String barcode_id) {
 //   }
 
 //   }  
-  while(payload <200 ){
-if ((millis() - current_time) >= 1000) {  // function millis()
-    // payload = http.getString();
-    payload = httpResponseCode;
 
-    Serial.print("res status : ");  Serial.print(cout_time); Serial.print(" : ");  Serial.println(payload);
-    cout_time++;
-    current_time = millis();
-  }
+//   while(cout_time >=5 ){
+// if ((millis() - current_time) >= 1000) {  // function millis()
+//     // payload = http.getString();
+//     payload = httpResponseCode;
 
-  }
-  // delay(1000);
-  
-  
-  Serial.print(" res httpResponseCode :"); Serial.println(httpResponseCode); Serial.print(" res status : ");
-  Serial.println(payload);
-  Serial.println("-----------------------------------------------------------------------------------------------------");
-  http.end();
+//     Serial.print("res status : ");  Serial.print(cout_time); Serial.print(" : ");  Serial.println(payload);
+//     cout_time++;
+//     current_time = millis();
+//   }
+
+//   }
+
+ 
 
   if (payload == 200) {
     time_trigger_statusLed = millis();
     toggle_statusLED = 1;
   }
+
+
 }
 
 

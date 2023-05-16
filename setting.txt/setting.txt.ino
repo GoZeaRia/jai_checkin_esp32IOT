@@ -25,28 +25,20 @@ unsigned long time_led_ready = 0;
 unsigned long time_trigger_statusLed = 0;
 unsigned long mill_holder;
 
-<<<<<<<< HEAD:setting.txt/setting.txt.ino
+
 unsigned long req_connect_time = 0;
-========
-unsigned long period_statchk = 10000; 
-unsigned long last_time_statchk = 0; 
- 
->>>>>>>> c9bc662865ec711ec92a6b7d9bca8155702143b0:jaiCheckinBackup.ino
+
+
 int SW_Scan_CI = 1;
 
 int led_ready = 0;
 int SW_Scan_CO = 1;
 int toggle_sw_CI = 1;
 int toggle_sw_CO = 1;
-<<<<<<<< HEAD:setting.txt/setting.txt.ino
-int toggle_sw_CS = 1;
-int SW_3 = 1;
-========
-int toggle_sw_CI = 1;
 int toggle_sw_CS = 1;
 int SW_Scan_CS = 1;
-int SW_3  =1;
->>>>>>>> c9bc662865ec711ec92a6b7d9bca8155702143b0:jaiCheckinBackup.ino
+int SW_3 = 1;
+
 int SW_4 = 1;
 
 int toggle_statusLED = 0;
@@ -77,11 +69,9 @@ void setup() {
 
 
   WIFI_connect();
-<<<<<<<< HEAD:setting.txt/setting.txt.ino
   Serial.println("\n loop started version 1.02");
-========
-  Serial.println("\n loop started version 1.01");
->>>>>>>> c9bc662865ec711ec92a6b7d9bca8155702143b0:jaiCheckinBackup.ino
+
+
 }
 
 void loop() {
@@ -101,19 +91,10 @@ void loop() {
   }else if (!SW_4) {
     SW_Scan_CS_param();
   }
-<<<<<<<< HEAD:setting.txt/setting.txt.ino
+
 // Serial.println(SW_Scan_CI);
-
   if (!toggle_sw_CI || !toggle_sw_CO || !toggle_sw_CS ) {  // when trigger switch   enable with 0
-========
-    if (!SW_4) {  
-    SW_Scan_CS_param();
-      
-  } 
 
-
-  if (!toggle_sw_CI || !toggle_sw_CO || !toggle_sw_CS) {  // when trigger switch   enable with 0
->>>>>>>> c9bc662865ec711ec92a6b7d9bca8155702143b0:jaiCheckinBackup.ino
     scan_hold();
   }
 
@@ -126,25 +107,11 @@ void loop() {
   ready_status();
 
 
-<<<<<<<< HEAD:setting.txt/setting.txt.ino
  if ((millis() - req_connect_time) >= 36000) {
 
     Http_connect_chk();
    req_connect_time = millis();
-========
 
-
-
- if( millis() - last_time_statchk > period_statchk) {
-   //10sec
-     last_time_statchk = millis(); 
-
-      String statChk = "statChk";
-      Http_Post_request_chk(statChk);
-     
- }
- 
->>>>>>>> c9bc662865ec711ec92a6b7d9bca8155702143b0:jaiCheckinBackup.ino
 }
 
 
@@ -181,11 +148,7 @@ void ready_status() {
 void SW_Scan_CO_param() {
   toggle_sw_CO = 0;
   toggle_sw_CI = 1;
-<<<<<<<< HEAD:setting.txt/setting.txt.ino
-   toggle_sw_CS = 1;
-========
   toggle_sw_CS = 1;
->>>>>>>> c9bc662865ec711ec92a6b7d9bca8155702143b0:jaiCheckinBackup.ino
   tlast_time_SW_Scan = millis();
   time_trigger_scan = millis();
   reset_Scanfunction = 1;
@@ -199,9 +162,7 @@ void SW_Scan_CO_param() {
 void SW_Scan_CI_param() {
     toggle_sw_CO = 1;
   toggle_sw_CI = 0;
-<<<<<<<< HEAD:setting.txt/setting.txt.ino
-   toggle_sw_CS = 1;
-========
+
   toggle_sw_CO = 1;
   toggle_sw_CS = 1;
   tlast_time_SW_Scan = millis();
@@ -218,7 +179,6 @@ void SW_Scan_CS_param() {
   toggle_sw_CI = 1;
   toggle_sw_CO = 1;
   toggle_sw_CS = 0;
->>>>>>>> c9bc662865ec711ec92a6b7d9bca8155702143b0:jaiCheckinBackup.ino
   tlast_time_SW_Scan = millis();
   time_trigger_scan = millis();
   reset_Scanfunction = 1;
@@ -299,11 +259,7 @@ void scan_20000ms() {
     digitalWrite(scan_switch_out, HIGH);
     toggle_sw_CI = 1;
     toggle_sw_CO = 1;
-<<<<<<<< HEAD:setting.txt/setting.txt.ino
     toggle_sw_CS = 1;
-========
-    toggle_sw_CS =1;
->>>>>>>> c9bc662865ec711ec92a6b7d9bca8155702143b0:jaiCheckinBackup.ino
     reset_Scanfunction = 0;
   }
 }
@@ -311,11 +267,7 @@ void Reset_scanFunc() {
   digitalWrite(scan_switch_out, HIGH);
   toggle_sw_CI = 1;
   toggle_sw_CO = 1;
-<<<<<<<< HEAD:setting.txt/setting.txt.ino
-  toggle_sw_CS = 1;
-========
   toggle_sw_CS = 1 ;
->>>>>>>> c9bc662865ec711ec92a6b7d9bca8155702143b0:jaiCheckinBackup.ino
   reset_Scanfunction = 0;
   digitalWrite(Led_2, LOW);
   
@@ -376,13 +328,9 @@ void Http_Post_request(String barcode_id) {
 
    Serial.print("data req:"); Serial.println(data);
   HTTPClient http;
-<<<<<<<< HEAD:setting.txt/setting.txt.ino
-  http.setTimeout(10000);
-  http.setConnectTimeout(10000);
-========
+
   http.setTimeout(5000);
   http.setConnectTimeout(5000);
->>>>>>>> c9bc662865ec711ec92a6b7d9bca8155702143b0:jaiCheckinBackup.ino
   http.begin(url);
   http.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
@@ -454,17 +402,5 @@ void Http_connect_chk() {
 
 
 void Test() {
-  //  if(!SW_3){
-  //     Serial.println("SW_3 : 0");
-  //     digitalWrite(Led_2,HIGH);
-  //   } else{
-  //     digitalWrite(Led_2,LOW);
-  //   }
-  //    if(!SW_4){
-  //     Serial.println("SW_4 : 0");
-
-  //      digitalWrite(Led_2,HIGH);
-  //      delay(300);
-  //      digitalWrite(Led_2,LOW);
-  //   }
+ 
 }
